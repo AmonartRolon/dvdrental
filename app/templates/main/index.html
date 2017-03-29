@@ -1,4 +1,6 @@
 {% extends "base.html" %}
 {% block page_content %}
 	<h2>DVD Rental, the best online dvd rental platform.</h2>
+	<p> Date and Time: {{ moment(current_time).format('LLL') }}. </p>
+	<p> You entered in the site {{ moment(current_time).fromNow(refresh=True) }} </p>
 {% endblock %}
