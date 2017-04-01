@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 
-from app import app, db
+from app import app, db, manager
 from app.auth.models import User, Role
-from flask_script import Manager
 from flask_script import Shell
-
-manager = Manager(app)
 
 def make_shell_context():
     return dict(app = app, db = db, User = User, Role = Role)
