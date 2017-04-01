@@ -5,6 +5,8 @@ from flask import url_for
 from flask_moment import Moment
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'it will be changed sometime in the future'
+
 bootstrap = Bootstrap(app)
 moment = Moment(app)
 
