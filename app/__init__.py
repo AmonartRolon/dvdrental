@@ -31,5 +31,11 @@ def create_app(config_name):
 
     from app.auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
+    
+    from app.languages import languages as languages_blueprint
+    app.register_blueprint(languages_blueprint, url_prefix='/languages')
+    
+    from app.films import films as films_blueprint
+    app.register_blueprint(films_blueprint, url_prefix='/films')
 
     return app
