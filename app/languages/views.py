@@ -1,5 +1,4 @@
 from flask import render_template
-from flask import Blueprint
 from flask import url_for
 from app.languages.models import Language
 from app import db

@@ -8,6 +8,7 @@ class Language(db.Model):
     name = db.Column(db.String(20), nullable = False)
     films = db.relationship('Film', backref = 'language', lazy = 'dynamic')
     last_update = db.Column(db.TIMESTAMP, nullable = False)
+    films = db.relationship('Film', backref = 'language', lazy = 'dynamic')
 
     def __repr__(self):
         return "<Name: {0}>".format(self.name)
