@@ -1,0 +1,13 @@
+Dear {{ user.username }},
+
+Welcome to DVDRental!
+
+To confirm your accont please click on the following link:
+
+{{ url_for('auth.confirm', token=token, _external=True) }}
+
+Sincerely,
+
+The DVDRental Team
+
+Note: replies to this email address are not monitored
