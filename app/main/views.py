@@ -3,8 +3,9 @@ from app.main import main
 from datetime import datetime
 from app.main.forms import NameForm
 from app import db
-from app.auth.models import User
-
+from app.auth.models import User, Permission
+from app.auth.decorators import admin_required, permission_required
+from flask_login import login_required
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
@@ -19,3 +20,15 @@ def index():
     return render_template('/main/index.html',
             current_time = datetime.utcnow(),
             form = form, name = session.get('name'))
+
+@main.route('/admin')
+@login_required
+@admin_required
+def for_admins_only():
+    return "For administrators!"
+
+@main.route('/shop_owner')
+@login_required
+@permission_required(Permission.SHOP_OWNER)
+def for_shop_owners_only():
+    return "For shop owners only"
