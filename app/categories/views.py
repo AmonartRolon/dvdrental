@@ -9,7 +9,7 @@ def browse():
     categories = Category.query.all()
     return render_template('categories/browse.html', categories = categories)
 
-@categories.route('/<id>')
+@categories.route('/<int:id>')
 def categories(id):
     category = Category.query.get(id)
     return render_template('categories/category.html', category = category)
