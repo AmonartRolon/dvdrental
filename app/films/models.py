@@ -1,5 +1,14 @@
 from app import db
 
+class FilmCategory(db.Model):
+    __tablename__ = 'film_category'
+
+    film_id = db.Column(db.Integer, db.ForeignKey('films.id'),
+                        primary_key=True)
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'),
+                            primary_key = True)
+    last_update = db.Column(db.TIMESTAMP, nullable = False)
+
 class Film(db.Model):
 
     __tablename__ = 'films'
@@ -18,6 +27,14 @@ class Film(db.Model):
     special_features = db.Column(db.Text)
     fulltext = db.Column(db.Text)
 
+    categories = db.relationship('FilmCategory',
+                                 foreign_keys = [FilmCategory.film_id],
+                                 backref = db.backref('films', lazy = 'joined'),
+                                 lazy = 'dynamic',
+                                 cascade = 'all, delete-orphan')
+
     def __repr__(self):
         return "<Title: {0} Description: {1} \
             Release Year: {2}>".format(self.title, self.description, self.release_year)
+
+
