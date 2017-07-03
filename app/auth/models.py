@@ -86,15 +86,22 @@ class User(UserMixin, db.Model):
             if self.role is None:
                 self.role = Role.query.filter_by(default = True).first()
 
+    def rent(self, film):
+        if film is not None:
+            self.rents.append(film)
+            db.session.commit()
+
+
     def can(self, permissions):
         return self.role is not None and \
                 (self.role.permissions & permissions) == permissions
 
     def is_administrator(self):
         return self.can(Permission.ADMINISTER)
-
+    """
     def __repr__(self):
         return '<User {email}>'.format(email = self.email)
+    """
 
 @login_manager.user_loader
 def load_user(user_id):

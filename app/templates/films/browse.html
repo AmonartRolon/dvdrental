@@ -3,7 +3,7 @@
 
 {% block title %} DVDRental - Browse {% endblock %}
 
-{% block content %}
+{% block page_content %}
         {{ wtf.quick_form(category_select) }}
         {% for film in films %}
         <a href = "{{ url_for('films.films', id = film.id) }}" >{{ film.title }}</a> </br>

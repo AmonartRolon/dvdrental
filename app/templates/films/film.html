@@ -1,4 +1,13 @@
 {% extends "base.html" %}
-{% block content %}
-    {{ film }}
+{% block page_content %}
+    <div class="row">
+        <div class="col-md-6">
+            <h1>{{ film.title }}</h1>
+            </br>
+            {{ film.description }}
+            </br>
+            <a href="{{ url_for('main.rent', id = film.id) }}"
+            class="btn btn-primary">Rent</a>
+        </div>
+    </div>
 {% endblock %}

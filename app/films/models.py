@@ -9,6 +9,8 @@ class FilmCategory(db.Model):
                             primary_key = True)
     last_update = db.Column(db.TIMESTAMP, nullable = False)
 
+rental = db.Table('rentals', db.Column('user_id', db.Integer, db.ForeignKey('users.id')), db.Column('film_id', db.Integer, db.ForeignKey('films.id')))
+
 class Film(db.Model):
 
     __tablename__ = 'films'
@@ -32,6 +34,9 @@ class Film(db.Model):
                                  backref = db.backref('films', lazy = 'joined'),
                                  lazy = 'dynamic',
                                  cascade = 'all, delete-orphan')
+
+    users = db.relationship('User', secondary = rental,
+            backref = db.backref('rents', lazy = 'dynamic'), lazy = 'dynamic')
 
     def __repr__(self):
         return "<Title: {0} Description: {1} \
